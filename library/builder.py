@@ -16,12 +16,16 @@ class Builder(object):
         now_option = {}
         final_code = ""
         for cmd in parsed_code:
+            #Debug Tools
+            #print(now_rule)
+            #print(now_option)
+            #print(cmd)
             if(is_rule == True and len(now_rule) == 0):
                 is_rule = False
-                print(now_instant.doRun(now_option))
+                #print(now_instant.doRun(now_option))
                 final_code += now_instant.doRun(now_option)
                 now_rule = []
-                now_option = []
+                now_option = {}
             if(is_rule == True):
                 if (now_rule[0] == "(" and cmd == "("):
                     now_option['('] = "("
@@ -31,11 +35,13 @@ class Builder(object):
                     now_option['('] = ")"
                     now_rule.pop(0)
                     continue
-                if (cmd == "("):
-                    now_option['('] = "("
-                    now_option.pop(0)
+
+                if (cmd == "___nextline___" and len(now_rule) > 1 and now_rule[1] == "nextline"):
+                    now_option['nextline'] = "\n"
+                    now_rule.pop(0)
                     now_rule.pop(0)
                     continue
+
                 if (cmd == ")"):
                     now_option['('] = ")"
                     now_rule.pop(0)
@@ -55,6 +61,9 @@ class Builder(object):
                 cmd_instant = self.instant_Base_manager.getInstant(self.instant_Keyword_map.getName()[key_idx])
                 now_instant = cmd_instant
                 now_rule = cmd_instant.getRule()
+                continue
+            if (cmd == "___nextline___" and len(now_rule) == 0):
+                final_code += "\n"
                 continue
 
             else:

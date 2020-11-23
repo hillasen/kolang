@@ -6,3 +6,5 @@ class Base_manager(object):
     def getInstant(self, name):
         if(name == "If"):
             return If.If()
+        if (name == "Variable"):
+            return variable.Variable()
