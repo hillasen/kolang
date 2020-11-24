@@ -1,4 +1,4 @@
-from base import If, variable
+from base import If, variable, Function
 
 class Base_manager(object):
     def __init__(self):
@@ -8,3 +8,5 @@ class Base_manager(object):
             return If.If()
         if (name == "Variable"):
             return variable.Variable()
+        if (name == "Function"):
+            return Function.Function()

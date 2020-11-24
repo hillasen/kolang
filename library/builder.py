@@ -31,8 +31,28 @@ class Builder(object):
                     now_option['('] = "("
                     now_rule.pop(0)
                     continue
+                if (now_rule[0] == "contents" and cmd == "("):
+                    now_option['('] = "("
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
+                if (now_rule[0] == "contents" and cmd == ")"):
+                    now_option[')'] = ")"
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
+                if (now_rule[0] == "contents_2" and cmd == "("):
+                    now_option['('] = "("
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
+                if (now_rule[0] == "contents_2" and cmd == ")"):
+                    now_option[')'] = ")"
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
                 if (now_rule[0] == ")" and cmd == ")"):
-                    now_option['('] = ")"
+                    now_option[')'] = ")"
                     now_rule.pop(0)
                     continue
 
@@ -45,13 +65,20 @@ class Builder(object):
                 if (cmd == ")"):
                     now_option['('] = ")"
                     now_rule.pop(0)
-                    now_rule.pop(0)
+
                     continue
                 if (now_rule[0] == "contents"):
                     if 'contents' in now_option.keys():
                         now_option['contents'] += cmd
                     else:
                         now_option['contents'] = cmd
+                    continue
+                pass
+                if (now_rule[0] == "contents_2"):
+                    if 'contents_2' in now_option.keys():
+                        now_option['contents_2'] += cmd
+                    else:
+                        now_option['contents_2'] = cmd
                     continue
                 pass
 
