@@ -17,9 +17,9 @@ class Builder(object):
         final_code = ""
         for cmd in parsed_code:
             #Debug Tools
-            #print(now_rule)
-            #print(now_option)
-            #print(cmd)
+            print(now_rule)
+            print(now_option)
+            print(cmd)
             if(is_rule == True and len(now_rule) == 0):
                 is_rule = False
                 #print(now_instant.doRun(now_option))
@@ -27,6 +27,12 @@ class Builder(object):
                 now_rule = []
                 now_option = {}
             if(is_rule == True):
+                if (now_rule[1] == "text" and cmd == now_rule[2]):
+                    now_option[now_rule[2]] = cmd
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
                 if (now_rule[0] == "(" and cmd == "("):
                     now_option['('] = "("
                     now_rule.pop(0)
