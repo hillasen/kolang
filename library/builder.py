@@ -27,7 +27,7 @@ class Builder(object):
                 now_rule = []
                 now_option = {}
             if(is_rule == True):
-                if (now_rule[1] == "text" and cmd == now_rule[2]):
+                if (len(now_rule) > 1 and now_rule[1] == "text" and cmd == now_rule[2]):
                     now_option[now_rule[2]] = cmd
                     now_rule.pop(0)
                     now_rule.pop(0)
@@ -37,22 +37,32 @@ class Builder(object):
                     now_option['('] = "("
                     now_rule.pop(0)
                     continue
-                if (now_rule[0] == "contents" and cmd == "("):
+                if (now_rule[0] == "contents" and cmd == "(" and now_rule[1] == "("):
                     now_option['('] = "("
                     now_rule.pop(0)
                     now_rule.pop(0)
                     continue
-                if (now_rule[0] == "contents" and cmd == ")"):
+                if (now_rule[0] == "contents" and cmd == ")" and now_rule[1] == ")"):
                     now_option[')'] = ")"
                     now_rule.pop(0)
                     now_rule.pop(0)
                     continue
-                if (now_rule[0] == "contents_2" and cmd == "("):
+                if (now_rule[0] == "contents_2" and cmd == "(" and now_rule[1] == "("):
                     now_option['('] = "("
                     now_rule.pop(0)
                     now_rule.pop(0)
                     continue
-                if (now_rule[0] == "contents_2" and cmd == ")"):
+                if (now_rule[0] == "contents_2" and cmd == ")" and now_rule[1] == ")"):
+                    now_option[')'] = ")"
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
+                if (now_rule[0] == "contents_3" and cmd == "(" and now_rule[1] == "("):
+                    now_option['('] = "("
+                    now_rule.pop(0)
+                    now_rule.pop(0)
+                    continue
+                if (now_rule[0] == "contents_3" and cmd == ")" and now_rule[1] == ")"):
                     now_option[')'] = ")"
                     now_rule.pop(0)
                     now_rule.pop(0)
@@ -80,11 +90,20 @@ class Builder(object):
                         now_option['contents'] = cmd
                     continue
                 pass
+
                 if (now_rule[0] == "contents_2"):
                     if 'contents_2' in now_option.keys():
                         now_option['contents_2'] += cmd
                     else:
                         now_option['contents_2'] = cmd
+                    continue
+                pass
+
+                if (now_rule[0] == "contents_3"):
+                    if 'contents_3' in now_option.keys():
+                        now_option['contents_3'] += cmd
+                    else:
+                        now_option['contents_3'] = cmd
                     continue
                 pass
 
