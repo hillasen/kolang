@@ -14,5 +14,5 @@ def code_parser(code):
         code = code.replace('\n'," " + "___nextline___" + " ")
         pass
     parsed_code = code.split()
-    print(parsed_code)
+    #print(parsed_code)
     return parsed_code

@@ -1,9 +1,9 @@
 from base import  base_manager
 
-class Variable:
+class Dot:
     def __init__(self):
         self.rule = []
-        self.info = {"name" : "Variable", "keyword" : "변수"}
+        self.info = {"name" : "dot", "keyword" : "의"}
         pass
     def getInfo(self):
         return self.info
@@ -12,5 +12,5 @@ class Variable:
         return self.rule
 
     def doRun(self, option):
-        return "var "
+        return "."
         pass

@@ -1,4 +1,4 @@
-from base import If, variable, Function, Script, Return, For
+from base import If, variable, Function, Script, Return, For, Class
 
 class Base_manager(object):
     def __init__(self):
@@ -16,3 +16,5 @@ class Base_manager(object):
             return Return.Return()
         if (name == "For"):
             return For.For()
+        if (name == "Dot"):
+            return Class.Dot()

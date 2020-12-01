@@ -5,6 +5,7 @@ from base import Function
 from base import Script
 from base import Return
 from base import For
+from base import Class
 
 instant_if = If.If()
 instant_variable = variable.Variable()
@@ -12,6 +13,7 @@ instant_function = Function.Function()
 instant_script = Script.Script()
 instant_return = Return.Return()
 instant_for = For.For()
+instant_dot = Class.Dot()
 
 class Keyword_map(object):
     def __init__(self):
